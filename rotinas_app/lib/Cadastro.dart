@@ -82,10 +82,12 @@ class Cadastro extends StatelessWidget{
       child: FloatingActionButton.extended(
         backgroundColor: Colors.black54,
         label: Text(label),
-        onPressed: (){
-          Navigator.pop(context, Home);
-        },
+        onPressed: onPressed(context),
       ),
     );
+  }
+
+  onPressed(context){
+    Navigator.pop(context, Home);
   }
 }
