@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Perfil.dart';
 import 'Home.dart';
+import 'CadastroRotina.dart';
 
 class Detalhes extends StatelessWidget{
 
@@ -9,31 +10,89 @@ class Detalhes extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
+        title: Text('Detalhes'),
         actions: [
-          FloatingActionButton.extended(
-            onPressed: abrirHome(context),
-            label: Text('Home'),
+          FloatingActionButton(
+            onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home())),
+            mini: true,
             backgroundColor: Colors.black26,
+            child: Icon(Icons.house),
           ),
           FloatingActionButton(
-            onPressed: abrirPerfil(context),
+            onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Perfil())),
             mini: true,
-            foregroundColor: Colors.black26,
+            backgroundColor: Colors.black26,
             child: Icon(Icons.person),
           ),
         ],
       ),
-      body: _body(),
+      body: _body(context),
     );
   }
 
-  abrirHome(context){
-    Navigator.pop(context, Home);
+  _body(context){
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          resumo(),
+          relatorio(context),
+          Container(
+            alignment: Alignment.bottomRight,
+            child: FloatingActionButton(
+              backgroundColor: Colors.teal,
+              child: Icon(Icons.add),
+              onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CadastroRotina(),)),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
-  abrirPerfil(context){
-    Navigator.pop(context, Perfil);
+  resumo(){
+    return Card(
+      child: SizedBox(
+        width: 300,
+        height: 50,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Title(color: Colors.black, child: Text('Rotina', style: TextStyle(fontSize: 20,),)),
+            Column(
+              children: [
+                Text('Feito', style: TextStyle(fontSize: 18),),
+                Text('30', style: TextStyle(fontSize: 18),),
+              ],
+            ),
+            Column(
+              children: [
+                Text('Meta', style: TextStyle(fontSize: 18),),
+                Text('20', style: TextStyle(fontSize: 18),),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
-  _body(){}
+  relatorio(context){
+    return Card(
+      child: SizedBox(
+        width: 300,
+        height: 300,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Title(color: Colors.black, child: Text('Relatórios:', style: TextStyle(fontSize: 28),)),
+            Text('* 28/08/2022 - 5h', style: TextStyle(fontSize: 20),),
+            Text('* 25/08/2022 - 7h', style: TextStyle(fontSize: 20),),
+            Text('* 15/08/2022 - 10h', style: TextStyle(fontSize: 20),),
+            Text('* 10/08/2022 - 3h', style: TextStyle(fontSize: 20),),
+          ],
+        ),
+      ),
+    );
+  }
 }
