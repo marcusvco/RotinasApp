@@ -1,52 +1,39 @@
 import 'package:flutter/material.dart';
-import 'Home.dart';
 
-class Cadastro extends StatelessWidget{
-  //const Cadastro({super.key});
 
-  dynamic username;
-  dynamic dataNascimento;
-  dynamic email;
-  dynamic senha;
-  dynamic senhaConfirm;
+class Cadastro extends StatelessWidget {
+  const Cadastro({super.key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-        title: Text("RotinasApp"),
+      appBar: AppBar(
+        title: const Text('RotinasApp'),
+        backgroundColor: Colors.teal,
       ),
-      body: _body(context),
-    );
-
-  }
-
-  _body(context){
-    return Container(
-        color: Colors.white60,
-        width: 200,
-        margin: EdgeInsetsDirectional.all(90),
-        child: Column(
-          children: [
-            Text("Cadastro", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.black87),),
-            _textField('Username', false, username),
-            _textField('Data de Nascimento', false, dataNascimento),
-            _textField('Email', false, email),
-            _textField('Senha', true, senha),
-            _textField('Confirmar Senha', true, senhaConfirm),
-            _button("Entrar", context)
-          ],
+      body: Container(
+        margin: EdgeInsets.all(80),
+        child : Center(
+            child: Column(
+              children: [
+                Text("Cadastro", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.teal),),
+                _textField('Username', false),
+                _textField('Data de Nascimento', false),
+                _textField('Email', false),
+                _textField('Senha', true),
+                _textField('Confirmar Senha', true),
+                _button("Entrar", context),
+              ],
+            )
         ),
+      ),
     );
   }
 
-  _textField(label, esconder, variavel){
+  _textField(label, esconder){
     if(esconder){
       return Center(
         child: TextFormField(
-          onChanged: (dynamic input) {
-            variavel = input;
-          },
           decoration: InputDecoration(
             labelText: label,
             border: OutlineInputBorder(),
@@ -63,9 +50,6 @@ class Cadastro extends StatelessWidget{
     }else{
       return Center(
         child: TextFormField(
-          onChanged: (dynamic input) {
-            variavel = input;
-          },
           decoration: InputDecoration(
             labelText: label,
             border: OutlineInputBorder(),
@@ -83,12 +67,7 @@ class Cadastro extends StatelessWidget{
       child: FloatingActionButton.extended(
         backgroundColor: Colors.black54,
         label: Text(label),
-        onPressed: onPressed(context),
+        onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home())),
       ),
     );
   }
-
-  onPressed(context){
-    Navigator.pop(context, Home);
-  }
-}

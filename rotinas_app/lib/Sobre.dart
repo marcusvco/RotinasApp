@@ -3,6 +3,7 @@ import 'Perfil.dart';
 import 'Home.dart';
 
 class Sobre extends StatelessWidget{
+  const Sobre({super.key});
 
   @override
   Widget build(BuildContext context){
@@ -11,13 +12,13 @@ class Sobre extends StatelessWidget{
         backgroundColor: Colors.teal,
         actions: [
           FloatingActionButton.extended(
-            onPressed: abrirHome(context),
+            onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home())),
             label: Text('Home'),
             backgroundColor: Colors.black26,
           ),
           Title(color: Colors.black, child: Text('Sobre')),
           FloatingActionButton(
-            onPressed: abrirPerfil(context),
+            onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Perfil())),
             mini: true,
             foregroundColor: Colors.black26,
             child: Icon(Icons.person),
@@ -26,14 +27,6 @@ class Sobre extends StatelessWidget{
       ),
       body: _body(context),
     );;
-  }
-
-  abrirHome(context){
-    Navigator.pop(context, Home);
-  }
-
-  abrirPerfil(context){
-    Navigator.pop(context, Perfil);
   }
 
   _body(context){
