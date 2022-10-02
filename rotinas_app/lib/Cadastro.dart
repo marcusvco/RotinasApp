@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'Home.dart';
 
 class Cadastro extends StatelessWidget {
   const Cadastro({super.key});
@@ -13,10 +13,12 @@ class Cadastro extends StatelessWidget {
       ),
       body: Container(
         margin: EdgeInsets.all(80),
-        child : Center(
+        child: Center(
             child: Column(
               children: [
-                Text("Cadastro", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.teal),),
+                Text("Cadastro", style: TextStyle(fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.teal),),
                 _textField('Username', false),
                 _textField('Data de Nascimento', false),
                 _textField('Email', false),
@@ -30,8 +32,8 @@ class Cadastro extends StatelessWidget {
     );
   }
 
-  _textField(label, esconder){
-    if(esconder){
+  _textField(label, esconder) {
+    if (esconder) {
       return Center(
         child: TextFormField(
           decoration: InputDecoration(
@@ -47,7 +49,7 @@ class Cadastro extends StatelessWidget {
           ),
         ),
       );
-    }else{
+    } else {
       return Center(
         child: TextFormField(
           decoration: InputDecoration(
@@ -62,12 +64,15 @@ class Cadastro extends StatelessWidget {
     }
   }
 
-  _button(label, context){
+  _button(label, context) {
     return Center(
       child: FloatingActionButton.extended(
         backgroundColor: Colors.black54,
         label: Text(label),
-        onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home())),
+        onPressed: () =>
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => Home())),
       ),
     );
   }
+}

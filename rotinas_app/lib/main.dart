@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'Home.dart';
+import 'Cadastro.dart';
+import 'Login.dart';
 
 void main() {
   runApp(const MaterialApp(
     title: 'App',
-    home: Cadastro(),
+    home: Principal(),
   ));
 }
 
-class Cadastro extends StatelessWidget {
-  const Cadastro({super.key});
+class Principal extends StatelessWidget {
+  const Principal({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,59 +24,20 @@ class Cadastro extends StatelessWidget {
         child : Center(
             child: Column(
               children: [
-                Text("Cadastro", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.teal),),
-                _textField('Username', false),
-                _textField('Data de Nascimento', false),
-                _textField('Email', false),
-                _textField('Senha', true),
-                _textField('Confirmar Senha', true),
-                _button("Entrar", context),
+                FloatingActionButton.extended(
+                  backgroundColor: Colors.teal.shade400,
+                  label: Text('Login'),
+                  onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login())),
+                ),
+                FloatingActionButton.extended(
+                  backgroundColor: Colors.teal.shade400,
+                  label: Text('Cadastro'),
+                  onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Cadastro())),
+                ),
               ],
             )
         ),
       ), 
-    );
-  }
-
-  _textField(label, esconder){
-    if(esconder){
-      return Center(
-        child: TextFormField(
-          decoration: InputDecoration(
-            labelText: label,
-            border: OutlineInputBorder(),
-            suffixIcon: Icon(
-              Icons.visibility,
-              color: Colors.black26,
-            ),
-            labelStyle: TextStyle(
-              color: Colors.teal,
-            ),
-          ),
-        ),
-      );
-    }else{
-      return Center(
-        child: TextFormField(
-          decoration: InputDecoration(
-            labelText: label,
-            border: OutlineInputBorder(),
-            labelStyle: TextStyle(
-              color: Colors.teal,
-            ),
-          ),
-        ),
-      );
-    }
-  }
-
-  _button(label, context){
-    return Center(
-      child: FloatingActionButton.extended(
-        backgroundColor: Colors.black54,
-        label: Text(label),
-        onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home())),
-      ),
     );
   }
 }
