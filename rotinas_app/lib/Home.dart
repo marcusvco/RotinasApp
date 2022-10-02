@@ -8,6 +8,14 @@ class Home extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
+    return _body(context);
+  }
+
+  abrirPerfil(context){
+    Navigator.pop(context, Perfil);
+  }
+
+  _body(context){
     return Scaffold(
       appBar: AppBar(
         title: Text('RotinasApp'),
@@ -21,15 +29,6 @@ class Home extends StatelessWidget{
           )
         ],
       ),
-      body: _body(),
     );
-  }
-
-  abrirPerfil(context){
-    Navigator.pop(context, Perfil);
-  }
-
-  _body(){
-    return Container();
   }
 }
