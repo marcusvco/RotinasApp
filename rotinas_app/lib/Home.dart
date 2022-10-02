@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'Perfil.dart';
+import 'Detalhes.dart';
+import 'Sobre.dart';
+import 'CadastroRotina.dart';
 
 class Home extends StatelessWidget{
 
@@ -27,6 +30,6 @@ class Home extends StatelessWidget{
   }
 
   _body(){
-
+    return Container();
   }
 }
