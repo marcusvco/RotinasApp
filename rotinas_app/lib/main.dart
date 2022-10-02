@@ -23,20 +23,25 @@ class Principal extends StatelessWidget {
       body: Container(
         margin: EdgeInsets.all(80),
         child : Center(
-            child: Column(
-              children: [
-                FloatingActionButton.extended(
-                  backgroundColor: Colors.teal.shade400,
-                  label: Text('Login'),
-                  onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home())),
-                ),
-                FloatingActionButton.extended(
-                  backgroundColor: Colors.teal.shade400,
-                  label: Text('Cadastro'),
-                  onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Cadastro())),
-                ),
-              ],
-            )
+            child: SizedBox(
+              width: 300,
+              height: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  FloatingActionButton.extended(
+                    backgroundColor: Colors.teal.shade400,
+                    label: Text('Login'),
+                    onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home())),
+                  ),
+                  FloatingActionButton.extended(
+                    backgroundColor: Colors.teal.shade400,
+                    label: Text('Cadastro'),
+                    onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Cadastro())),
+                  ),
+                ],
+              ),
+            ),
         ),
       ), 
     );

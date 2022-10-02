@@ -33,18 +33,12 @@ class Detalhes extends StatelessWidget{
   _body(context){
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           resumo(),
           relatorio(context),
-          Container(
-            alignment: Alignment.bottomRight,
-            child: FloatingActionButton(
-              backgroundColor: Colors.teal,
-              child: Icon(Icons.add),
-              onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CadastroRotina(),)),
-            ),
-          ),
+          botao(context),
         ],
       ),
     );
@@ -92,6 +86,17 @@ class Detalhes extends StatelessWidget{
             Text('* 10/08/2022 - 3h', style: TextStyle(fontSize: 20),),
           ],
         ),
+      ),
+    );
+  }
+
+  botao(context){
+    return Container(
+      alignment: Alignment.bottomRight,
+      child: FloatingActionButton(
+        backgroundColor: Colors.teal,
+        child: Icon(Icons.add),
+        onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CadastroRotina(),)),
       ),
     );
   }
