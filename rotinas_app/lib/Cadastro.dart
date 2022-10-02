@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Home.dart';
 
 class Cadastro extends StatelessWidget{
+  //const Cadastro({super.key});
 
   dynamic username;
   dynamic dataNascimento;
