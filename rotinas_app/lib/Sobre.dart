@@ -6,18 +6,6 @@ class Sobre extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return _body(context);
-  }
-
-  abrirHome(context){
-    Navigator.pop(context, Home);
-  }
-
-  abrirPerfil(context){
-    Navigator.pop(context, Perfil);
-  }
-
-  _body(context){
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
@@ -35,8 +23,37 @@ class Sobre extends StatelessWidget{
           ),
         ],
       ),
-      body: Container(
+      body: _body(context),
+    );;
+  }
 
+  abrirHome(context){
+    Navigator.pop(context, Home);
+  }
+
+  abrirPerfil(context){
+    Navigator.pop(context, Perfil);
+  }
+
+  _body(context){
+    return Center(
+      child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: Colors.white12,
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+        ),
+        child: SizedBox(
+          width: 300,
+          height: 100,
+          child: Center(
+              child: Text(
+                  'Texto do Sobre'
+              ),
+          ),
+        ),
       ),
     );
   }
