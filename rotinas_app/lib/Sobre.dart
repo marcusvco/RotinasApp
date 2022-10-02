@@ -46,8 +46,8 @@ class Sobre extends StatelessWidget{
           borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         child: SizedBox(
-          width: 300,
-          height: 100,
+          width: 400,
+          height: 900,
           child: Center(
               child: Text(
                   'Texto do Sobre'
