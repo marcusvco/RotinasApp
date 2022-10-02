@@ -13,7 +13,7 @@ class Home extends StatelessWidget{
           FloatingActionButton(
             onPressed: abrirPerfil(context),
             mini: true,
-            foregroundColor: Colors.teal,
+            foregroundColor: Colors.black26,
             child: Icon(Icons.person),
           )
         ],
@@ -27,6 +27,6 @@ class Home extends StatelessWidget{
   }
 
   _body(){
-    
+
   }
 }
