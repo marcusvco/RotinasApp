@@ -6,6 +6,18 @@ class Sobre extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
+    return _body(context);
+  }
+
+  abrirHome(context){
+    Navigator.pop(context, Home);
+  }
+
+  abrirPerfil(context){
+    Navigator.pop(context, Perfil);
+  }
+
+  _body(context){
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
@@ -23,17 +35,9 @@ class Sobre extends StatelessWidget{
           ),
         ],
       ),
-      body: _body(),
-    );;
-  }
+      body: Container(
 
-  abrirHome(context){
-    Navigator.pop(context, Home);
+      ),
+    );
   }
-
-  abrirPerfil(context){
-    Navigator.pop(context, Perfil);
-  }
-
-  _body(){}
 }

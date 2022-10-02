@@ -11,16 +11,17 @@ class Cadastro extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return _body(context);
+    return Scaffold(
+        appBar: AppBar(
+        title: Text("RotinasApp"),
+      ),
+      body: _body(context),
+    );
 
   }
 
   _body(context){
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("RotinasApp"),
-      ),
-      body: Container(
+    return Container(
         color: Colors.white60,
         width: 200,
         margin: EdgeInsetsDirectional.all(90),
@@ -35,7 +36,6 @@ class Cadastro extends StatelessWidget{
             _button("Entrar", context)
           ],
         ),
-      ),
     );
   }
 
