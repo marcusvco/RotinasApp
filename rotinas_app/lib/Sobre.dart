@@ -51,7 +51,10 @@ class Sobre extends StatelessWidget{
           height: 900,
           child: Center(
               child: Text(
-                  'Texto do Sobre'
+                  'O aplicativo tem como missão ajudar os nossos usuários em suas '
+                      'batlhas diárias utilizando-se da gameficação gerando mais motivação com pequenas conquistas.'
+                      'Recomendamos o uso do aplicativo em todas as pequenas coisas do dia a dia, como ler mais, '
+                      'economizar dinheiro, fazer exercícios físicos e etc. O limite do uso é sua criatividade.'
               ),
           ),
         ),
