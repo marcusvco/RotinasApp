@@ -10,6 +10,7 @@ class Sobre extends StatelessWidget{
       appBar: AppBar(
         backgroundColor: Colors.teal,
         actions: [
+          Title(color: Colors.black, child: Text('Sobre')),
           FloatingActionButton.extended(
             onPressed: abrirHome(context),
             label: Text('Home'),
