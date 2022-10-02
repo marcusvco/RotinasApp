@@ -1,35 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:rotinas_app/main.dart';
+import 'main.dart';
 import 'Perfil.dart';
 import 'Detalhes.dart';
 import 'Sobre.dart';
 import 'CadastroRotina.dart';
 
-class Home extends StatelessWidget{
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('RotinasApp'),
-        backgroundColor: Colors.teal,
-        actions: [
-          FloatingActionButton(
-            onPressed: abrirPerfil(context),
-            mini: true,
-            foregroundColor: Colors.black26,
-            child: Icon(Icons.person),
-          )
-        ],
+        title: const Text('Home'),
       ),
-      body: _body(context),
-    );;
-  }
-
-  abrirPerfil(context){
-    Navigator.pop(context, Perfil);
-  }
-
-  _body(context){
-    return Container();
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => FirstRoute()),
+            );
+          },
+          child: const Text('Go back!'),
+        ),
+      ),
+    );
   }
 }
