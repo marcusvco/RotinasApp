@@ -17,7 +17,7 @@ class Home extends StatelessWidget{
           FloatingActionButton(
             onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Perfil())),
             mini: true,
-            foregroundColor: Colors.black26,
+            backgroundColor: Colors.black26,
             child: Icon(Icons.person),
           )
         ],
@@ -29,6 +29,7 @@ class Home extends StatelessWidget{
   _body(context){
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _card('Saúde Física', context),
           _card('Saúde Mental', context),
@@ -36,6 +37,7 @@ class Home extends StatelessWidget{
           _card('Desenvolvimento Proficional', context),
           _card('Finanças Pessoais', context),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               FloatingActionButton(
                 onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Sobre())),

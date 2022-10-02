@@ -9,18 +9,19 @@ class Sobre extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
+        title: Text('Sobre'),
         backgroundColor: Colors.teal,
         actions: [
-          FloatingActionButton.extended(
+          FloatingActionButton(
             onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home())),
-            label: Text('Home'),
+            mini: true,
             backgroundColor: Colors.black26,
+            child: Icon(Icons.house),
           ),
-          Title(color: Colors.black, child: Text('Sobre')),
           FloatingActionButton(
             onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Perfil())),
             mini: true,
-            foregroundColor: Colors.black26,
+            backgroundColor: Colors.black26,
             child: Icon(Icons.person),
           ),
         ],
@@ -32,22 +33,17 @@ class Sobre extends StatelessWidget{
   _body(context){
     return Center(
       child: Card(
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            color: Colors.white12,
-          ),
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-        ),
         child: SizedBox(
-          width: 400,
-          height: 900,
+          width: 300,
+          height: 500,
           child: Center(
               child: Text(
                   'O aplicativo tem como missão ajudar os nossos usuários em suas '
                       'batlhas diárias utilizando-se da gameficação gerando mais motivação com pequenas conquistas.'
                       'Recomendamos o uso do aplicativo em todas as pequenas coisas do dia a dia, como ler mais, '
-                      'economizar dinheiro, fazer exercícios físicos e etc. O limite do uso é sua criatividade.'
+                      'economizar dinheiro, fazer exercícios físicos e etc. O limite do uso é sua criatividade.',
+                style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,),
+                textAlign: TextAlign.center,
               ),
           ),
         ),
