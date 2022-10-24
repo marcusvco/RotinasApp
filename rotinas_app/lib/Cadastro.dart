@@ -4,19 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'Home.dart';
 
-
-
-/*val client = OkHttpClient()
-
-val request = Request.Builder()
-    .url("https://pozzad-email-validator.p.rapidapi.com/emailvalidator/validateEmail/john@gmail.com")
-    .get()
-    .addHeader("X-RapidAPI-Key", "6defc7afebmshaf083fb58030b84p191bf9jsn6317b394f4c9")
-    .addHeader("X-RapidAPI-Host", "pozzad-email-validator.p.rapidapi.com")
-    .build()
-
-val response = client.newCall(request).execute() */
-
 class Cadastro extends StatelessWidget {
   TextEditingController userName = TextEditingController();
   TextEditingController dataNascimento = TextEditingController();
