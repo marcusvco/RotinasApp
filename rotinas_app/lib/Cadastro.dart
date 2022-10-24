@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'Home.dart';
@@ -21,15 +23,33 @@ class Cadastro extends StatelessWidget {
   TextEditingController email = TextEditingController();
   TextEditingController senha = TextEditingController();
   TextEditingController confirmSenha = TextEditingController();
+  dynamic _context;
+  dynamic isValid;
 
-  _validaEmail() async{
+   _validaEmail() async{
     String url = "https://pozzad-email-validator.p.rapidapi.com/emailvalidator/validateEmail/${email.text}";
+    Map<String, String> requestHeaders = {
+      'X-RapidAPI-Key' : '8eac49a213msh80bcfbb43ae9fccp10f17djsn884aeb4fa16e',
+      'X-RapidAPI-Host' : 'pozzad-email-validator.p.rapidapi.com',
+    };
+    http.head(url as Uri, headers: requestHeaders);
     http.Response response;
     response = await http.get(url as Uri);
+    this.isValid = response.body;
+  }
+
+  _salvar() async{
+    _validaEmail();
+    if(isValid) {
+      return Navigator.pushReplacement(
+          this._context, MaterialPageRoute(builder: (context) => Home()));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    this._context = context;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('RotinasApp'),
@@ -48,7 +68,7 @@ class Cadastro extends StatelessWidget {
                 _textField('Email', false, email),
                 _textField('Senha', true, senha),
                 _textField('Confirmar Senha', true, confirmSenha),
-                _button("Entrar", context),
+                _button("Entrar"),
               ],
             )
         ),
@@ -90,14 +110,12 @@ class Cadastro extends StatelessWidget {
     }
   }
 
-  _button(label, context) {
+  _button(label) {
     return Center(
       child: FloatingActionButton.extended(
         backgroundColor: Colors.black54,
         label: Text(label),
-        onPressed: () =>
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Home())),
+        onPressed: _salvar,
       ),
     );
   }
