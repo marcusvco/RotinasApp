@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Perfil.dart';
 import 'Home.dart';
 import 'CadastroRotina.dart';
 
-class Detalhes extends StatelessWidget{
+class Detalhes extends StatefulWidget{
+  @override
+  State<Detalhes> createState() => _DetalhesState();
+}
+
+class _DetalhesState extends State<Detalhes> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  late String _categoria;
+
+  _recuperarDados() async{
+    final pref = await SharedPreferences.getInstance();
+
+    setState(() {
+      _categoria = pref.getString("categoria") ?? '';
+    });
+  }
 
   @override
   Widget build(BuildContext context){
+    _recuperarDados();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
@@ -52,7 +69,7 @@ class Detalhes extends StatelessWidget{
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Title(color: Colors.black, child: Text('Rotina', style: TextStyle(fontSize: 20,),)),
+            Title(color: Colors.black, child: Text(_categoria, style: TextStyle(fontSize: 20,),)),
             Column(
               children: [
                 Text('Feito', style: TextStyle(fontSize: 18),),

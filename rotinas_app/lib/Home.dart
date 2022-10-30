@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Perfil.dart';
 import 'Detalhes.dart';
 import 'Sobre.dart';
 import 'CadastroRotina.dart';
 
-class Home extends StatelessWidget{
+class Home extends StatefulWidget{
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  late String _categoria;
 
   @override
   Widget build(BuildContext context){
@@ -56,7 +65,10 @@ class Home extends StatelessWidget{
     );
   }
 
-  _card(nome, context){
+  _card(nome, context) async{
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('categoria', nome);
+
     return Card(
       child: InkWell(
         splashColor: Colors.teal,
