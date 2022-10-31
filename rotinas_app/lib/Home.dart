@@ -13,8 +13,6 @@ class Home extends StatefulWidget{
 }
 
 class _HomeState extends State<Home> {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  late String _categoria;
 
   @override
   Widget build(BuildContext context){
@@ -65,9 +63,14 @@ class _HomeState extends State<Home> {
     );
   }
 
-  _card(nome, context) async{
-    final prefs = await SharedPreferences.getInstance();
+  salvarInfo(nome) async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('categoria', nome);
+  }
+
+
+  _card(nome, context){
+    salvarInfo(nome);
 
     return Card(
       child: InkWell(

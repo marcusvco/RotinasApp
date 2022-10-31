@@ -10,11 +10,12 @@ class Detalhes extends StatefulWidget{
 }
 
 class _DetalhesState extends State<Detalhes> {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  late String _categoria;
+  String _categoria = "";
+  dynamic _feito = 0;
+  dynamic _meta = 0;
 
   _recuperarDados() async{
-    final pref = await SharedPreferences.getInstance();
+    final SharedPreferences pref = await SharedPreferences.getInstance();
 
     setState(() {
       _categoria = pref.getString("categoria") ?? '';
@@ -23,7 +24,6 @@ class _DetalhesState extends State<Detalhes> {
 
   @override
   Widget build(BuildContext context){
-    _recuperarDados();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
@@ -62,6 +62,7 @@ class _DetalhesState extends State<Detalhes> {
   }
 
   resumo(){
+    _recuperarDados();
     return Card(
       child: SizedBox(
         width: 300,
