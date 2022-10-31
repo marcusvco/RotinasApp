@@ -2,9 +2,31 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:sqflite/sqflite.dart';
 import 'Home.dart';
+import 'package:path/path.dart';
 
 class Cadastro extends StatelessWidget {
+  _recuperarBancoDados() async{
+    final caminhoBD = await getDatabasesPath();
+    final localBD = join(caminhoBD, "banco.db");
+
+    var retorno = await openDatabase(
+        localBD,
+        version: 1,
+        onCreate: (db, dbVersaoRecente){
+          String sql = "CREATE TABLE Usuario("
+              "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+              "Nome VARCHAR,"
+              "Email VARCHAR,"
+              "Senha VARCHAR)";
+          db.execute(sql);
+        }
+    );
+  }
+
+
+
   TextEditingController userName = TextEditingController();
   TextEditingController dataNascimento = TextEditingController();
   TextEditingController email = TextEditingController();
