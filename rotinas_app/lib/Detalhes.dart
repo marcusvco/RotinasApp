@@ -10,16 +10,14 @@ class Detalhes extends StatefulWidget{
 }
 
 class _DetalhesState extends State<Detalhes> {
-  String _categoria = "";
+  late final SharedPreferences _prefs;
+  late String _categoria = "";
   dynamic _feito = 0;
   dynamic _meta = 0;
 
   _recuperarDados() async{
-    final SharedPreferences pref = await SharedPreferences.getInstance();
-
-    setState(() {
-      _categoria = pref.getString("categoria") ?? '';
-    });
+    _prefs = await SharedPreferences.getInstance();
+    _categoria = _prefs.get('categoria') as String;
   }
 
   @override
@@ -66,22 +64,27 @@ class _DetalhesState extends State<Detalhes> {
     return Card(
       child: SizedBox(
         width: 300,
-        height: 50,
-        child: Row(
+        height: 100,
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Title(color: Colors.black, child: Text(_categoria, style: TextStyle(fontSize: 20,),)),
-            Column(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text('Feito', style: TextStyle(fontSize: 18),),
-                Text('30', style: TextStyle(fontSize: 18),),
-              ],
-            ),
-            Column(
-              children: [
-                Text('Meta', style: TextStyle(fontSize: 18),),
-                Text('20', style: TextStyle(fontSize: 18),),
-              ],
+                Column(
+                  children: [
+                    Text('Feito', style: TextStyle(fontSize: 18),),
+                    Text('30', style: TextStyle(fontSize: 18),),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text('Meta', style: TextStyle(fontSize: 18),),
+                    Text('20', style: TextStyle(fontSize: 18),),
+                  ],
+                ),
+              ]
             ),
           ],
         ),

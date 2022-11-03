@@ -13,9 +13,13 @@ class Home extends StatefulWidget{
 }
 
 class _HomeState extends State<Home> {
+  late final SharedPreferences _prefs;
+  dynamic _context;
 
   @override
   Widget build(BuildContext context){
+    this._context = context;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('RotinasApp'),
@@ -29,30 +33,30 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
-      body: _body(context),
+      body: _body(),
     );
   }
 
-  _body(context){
+  _body(){
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _card('Saúde Física', context),
-          _card('Saúde Mental', context),
-          _card('Desenvolvimento Pessoal', context),
-          _card('Desenvolvimento Proficional', context),
-          _card('Finanças Pessoais', context),
+          _card('Saúde Física'),
+          _card('Saúde Mental'),
+          _card('Desenvolvimento Pessoal'),
+          _card('Desenvolvimento Proficional'),
+          _card('Finanças Pessoais'),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               FloatingActionButton(
-                onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Sobre())),
+                onPressed: () => Navigator.pushReplacement(_context, MaterialPageRoute(builder: (_context) => Sobre())),
                 backgroundColor: Colors.teal,
                 child: Icon(Icons.question_mark),
               ),
               FloatingActionButton(
-                onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CadastroRotina())),
+                onPressed: () => Navigator.pushReplacement(_context, MaterialPageRoute(builder: (_context) => CadastroRotina())),
                 backgroundColor: Colors.teal,
                 child: Icon(Icons.add),
               ),
@@ -63,19 +67,22 @@ class _HomeState extends State<Home> {
     );
   }
 
-  salvarInfo(nome) async{
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('categoria', nome);
+  apertarCard(nome){
+    salvarInfo(nome);
+    return Navigator.pushReplacement(_context, MaterialPageRoute(builder: (_context) => Detalhes()));
   }
 
+  salvarInfo(nome) async{
+    _prefs = await SharedPreferences.getInstance();
+    await _prefs.setString('categoria', nome);
+    print(nome);
+  }
 
-  _card(nome, context){
-    salvarInfo(nome);
-
+  _card(nome){
     return Card(
       child: InkWell(
         splashColor: Colors.teal,
-        onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Detalhes())),
+        onTap: () => apertarCard(nome),
         child: SizedBox(
           width: 300,
           height: 70,
