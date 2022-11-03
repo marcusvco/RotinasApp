@@ -17,11 +17,14 @@ class _DetalhesState extends State<Detalhes> {
 
   _recuperarDados() async{
     _prefs = await SharedPreferences.getInstance();
-    _categoria = _prefs.get('categoria') as String;
+    setState(() {
+      _categoria = (_prefs.get('categoria') ?? 'Sem Valor') as String;
+    });
   }
 
   @override
   Widget build(BuildContext context){
+    _recuperarDados();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
@@ -60,7 +63,6 @@ class _DetalhesState extends State<Detalhes> {
   }
 
   resumo(){
-    _recuperarDados();
     return Card(
       child: SizedBox(
         width: 300,
