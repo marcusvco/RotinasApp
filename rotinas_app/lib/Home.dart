@@ -75,7 +75,6 @@ class _HomeState extends State<Home> {
   salvarInfo(nome) async{
     _prefs = await SharedPreferences.getInstance();
     await _prefs.setString('categoria', nome);
-    print(nome);
   }
 
   _card(nome){
