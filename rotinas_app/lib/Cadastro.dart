@@ -7,6 +7,13 @@ import 'Home.dart';
 import 'package:path/path.dart';
 
 class Cadastro extends StatelessWidget {
+  TextEditingController userName = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController senha = TextEditingController();
+  TextEditingController confirmSenha = TextEditingController();
+  dynamic _context;
+  dynamic isValid;
+
   _recuperarBancoDados() async{
     final caminhoBD = await getDatabasesPath();
     final localBD = join(caminhoBD, "banco.db");
@@ -15,25 +22,24 @@ class Cadastro extends StatelessWidget {
         localBD,
         version: 1,
         onCreate: (db, dbVersaoRecente){
-          String sql = "CREATE TABLE Usuario("
-              "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-              "Nome VARCHAR,"
-              "Email VARCHAR,"
-              "Senha VARCHAR)";
+          String sql = "CREATE TABLE Usuario(id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR, email VARCHAR, senha VARCHAR)";
           db.execute(sql);
         }
     );
+    print("Aberto " + retorno.isOpen.toString());
   }
 
-
-
-  TextEditingController userName = TextEditingController();
-  TextEditingController dataNascimento = TextEditingController();
-  TextEditingController email = TextEditingController();
-  TextEditingController senha = TextEditingController();
-  TextEditingController confirmSenha = TextEditingController();
-  dynamic _context;
-  dynamic isValid;
+  _salvarDados(int id, String nome, String email, String senha) async{
+    Database bd = await _recuperarBancoDados();
+    Map<String, dynamic> dadosUsuario = {
+      "nome" : nome,
+      "email" : email,
+      "senha" : senha
+    };
+    int id = await bd.insert("Usuario", dadosUsuario);
+    print("Username: " + userName.toString());
+    print("Salvo: $id");
+  }
 
    _validaEmail() async{
     String url = "https://pozzad-email-validator.p.rapidapi.com/emailvalidator/validateEmail/${email.text}";
@@ -49,6 +55,7 @@ class Cadastro extends StatelessWidget {
 
   _salvar() async{
     _validaEmail();
+    _salvarDados(userName.toString(), email.toString(), senha.toString());
     if(isValid) {
       return Navigator.pushReplacement(
           this._context, MaterialPageRoute(builder: (context) => Home()));
@@ -73,10 +80,8 @@ class Cadastro extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.teal),),
                 _textField('Username', false, userName),
-                _textField('Data de Nascimento', false, dataNascimento),
                 _textField('Email', false, email),
                 _textField('Senha', true, senha),
-                _textField('Confirmar Senha', true, confirmSenha),
                 _button("Entrar"),
               ],
             )
