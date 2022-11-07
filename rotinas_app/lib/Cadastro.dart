@@ -16,7 +16,7 @@ class Cadastro extends StatelessWidget {
 
   _recuperarBancoDados() async{
     final caminhoBD = await getDatabasesPath();
-    final localBD = join(caminhoBD, "banco.db");
+    final localBD = join(caminhoBD, "bancov2.db");
 
     var retorno = await openDatabase(
         localBD,
@@ -29,7 +29,7 @@ class Cadastro extends StatelessWidget {
     print("Aberto " + retorno.isOpen.toString());
   }
 
-  _salvarDados(int id, String nome, String email, String senha) async{
+  _salvarDados(String nome, String email, String senha) async{
     Database bd = await _recuperarBancoDados();
     Map<String, dynamic> dadosUsuario = {
       "nome" : nome,
@@ -53,13 +53,13 @@ class Cadastro extends StatelessWidget {
     this.isValid = response.body;
   }
 
-  _salvar() async{
-    _validaEmail();
-    _salvarDados(userName.toString(), email.toString(), senha.toString());
-    if(isValid) {
+  _salvar() {
+    //_validaEmail();
+    _salvarDados(userName.text, email.text, senha.text);
+    //if(isValid) {
       return Navigator.pushReplacement(
           this._context, MaterialPageRoute(builder: (context) => Home()));
-    }
+    //}
   }
 
   @override
