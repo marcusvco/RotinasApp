@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Cadastro.dart';
 import 'Login.dart';
-import 'Home.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -32,7 +31,7 @@ class Principal extends StatelessWidget {
                   FloatingActionButton.extended(
                     backgroundColor: Colors.teal.shade400,
                     label: Text('Login'),
-                    onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home())),
+                    onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login())),
                   ),
                   FloatingActionButton.extended(
                     backgroundColor: Colors.teal.shade400,
