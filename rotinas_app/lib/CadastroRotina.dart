@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'Perfil.dart';
 import 'Home.dart';
 
 class CadastroRotina extends StatelessWidget{
@@ -15,12 +14,6 @@ class CadastroRotina extends StatelessWidget{
             label: Text('Home'),
             backgroundColor: Colors.black26,
           ),
-          FloatingActionButton(
-            onPressed: abrirPerfil(context),
-            mini: true,
-            foregroundColor: Colors.black26,
-            child: Icon(Icons.person),
-          ),
         ],
       ),
       body: _body(),
@@ -29,10 +22,6 @@ class CadastroRotina extends StatelessWidget{
 
   abrirHome(context){
     Navigator.pop(context, Home);
-  }
-
-  abrirPerfil(context){
-    Navigator.pop(context, Perfil);
   }
 
   _body(){}

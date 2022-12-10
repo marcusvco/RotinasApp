@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'Perfil.dart';
 import 'Detalhes.dart';
 import 'Sobre.dart';
 import 'CadastroRotina.dart';
@@ -24,14 +23,6 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text('RotinasApp'),
         backgroundColor: Colors.teal,
-        actions: [
-          FloatingActionButton(
-            onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Perfil())),
-            mini: true,
-            backgroundColor: Colors.black26,
-            child: Icon(Icons.person),
-          )
-        ],
       ),
       body: _body(),
     );

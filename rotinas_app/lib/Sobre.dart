@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'Perfil.dart';
 import 'Home.dart';
 
 class Sobre extends StatelessWidget{
@@ -17,12 +16,6 @@ class Sobre extends StatelessWidget{
             mini: true,
             backgroundColor: Colors.black26,
             child: Icon(Icons.house),
-          ),
-          FloatingActionButton(
-            onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Perfil())),
-            mini: true,
-            backgroundColor: Colors.black26,
-            child: Icon(Icons.person),
           ),
         ],
       ),
