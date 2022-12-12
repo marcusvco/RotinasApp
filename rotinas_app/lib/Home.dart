@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
           _card('Saúde Física'),
           _card('Saúde Mental'),
           _card('Desenvolvimento Pessoal'),
-          _card('Desenvolvimento Proficional'),
+          _card('Desenvolvimento Profissional'),
           _card('Finanças Pessoais'),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
