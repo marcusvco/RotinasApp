@@ -13,7 +13,7 @@ class CadastroRotina extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
-        title: Text('Detalhes'),
+        title: Text('Cadastro Rotina'),
         actions: [
           FloatingActionButton(
             onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home())),
